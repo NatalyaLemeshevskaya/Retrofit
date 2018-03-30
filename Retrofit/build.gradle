@@ -1,0 +1,92 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+ext{
+
+    compileSdkVersion = 27
+    buildToolsVersion = "27.0.2"
+    minSdkVersion = 15
+    targetSdkVersion = 27
+
+
+    androidBindingVersion = "3.0.0"
+    archComponentVersion = "1.0.0"
+
+    androidBindingVersion = "3.0.0"
+
+    rxjavaversoin = "2.1.10"
+    rxandroidversoin = "2.0.2"
+
+    gsonVersion = "2.8.0"
+
+    daggerVersion = "2.15"
+    javaInjectVersion = "1"
+
+    picassoVersoin = "2.5.2"
+
+    retrofitVersion = "2.4.0"
+    rxAdapterVersion = "2.3.0"
+
+    okHttpVersion = "3.10.0"
+
+
+
+    dependencies  = [
+
+            supportAppCompact : "com.android.support:appcompat-v7:$buildToolsVersion",
+            supportv4 : "com.android.support:support-v4:$buildToolsVersion",
+            supportdesign : "com.android.support:design:$buildToolsVersion",
+
+            androidBindingCompiler : "com.android.databinding:compiler:$androidBindingVersion",
+
+            archComponentsExtensions: "android.arch.lifecycle:extensions:$archComponentVersion",
+            archComponentsCompiler:  "android.arch.lifecycle:compiler:$archComponentVersion",
+
+            dagger: "com.google.dagger:dagger:$daggerVersion",
+            daggerCompiler: "com.google.dagger:dagger-compiler:$daggerVersion",
+            javaxInject: "javax.inject:javax.inject:$javaInjectVersion",
+            okHttp: "com.squareup.okhttp3:okhttp:$okHttpVersion",
+            okHttpLoggin: "com.squareup.okhttp3:logging-interceptor:$okHttpVersion",
+
+            rxandroid :  "io.reactivex.rxjava2:rxandroid:$rxandroidversoin",
+            rxjava : "io.reactivex.rxjava2:rxjava:$rxjavaversoin",
+
+            gson : "com.google.code.gson:gson:$gsonVersion",
+
+            picasso : "com.squareup.picasso:picasso:$picassoVersoin",
+
+            retrofit: "com.squareup.retrofit2:retrofit:$retrofitVersion",
+
+            gsonConverter: "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+            rxAdapter: "com.squareup.retrofit2:adapter-rxjava2:$rxAdapterVersion"
+
+
+    ]
+
+}
+
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

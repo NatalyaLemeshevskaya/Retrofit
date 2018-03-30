@@ -1,0 +1,66 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.natallialemiasheuskaya.retrofit"
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "API_ENDPOINT", "\"WOW, I CAN DO IT\""
+
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+    dataBinding {
+        enabled = true
+    }
+    android {
+        compileOptions.incremental = false
+    }
+
+}
+
+
+
+dependencies {
+
+    def dependency = rootProject.ext.dependencies
+
+    implementation dependency.supportAppCompact
+    implementation dependency.supportv4
+    implementation dependency.supportdesign
+
+    implementation dependency.archComponentsExtensions
+    annotationProcessor dependency.archComponentsCompiler
+
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    annotationProcessor dependency.androidBindingCompiler
+
+    implementation dependency.dagger
+    annotationProcessor dependency.daggerCompiler
+
+    implementation dependency.rxandroid
+
+    implementation dependency.picasso
+
+
+    implementation dependency.gson
+    api project(path: ':domain')
+    api project(path: ':data')
+
+}
