@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import
+            type="android.view.View"/>
+
+        <variable
+            name="viewModel"
+            type="com.example.natallialemiasheuskaya.userretrofit.UserViewModel"/>
+
+    </data>
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#bdd1cb"
+    android:padding="10dp">
+
+    <RelativeLayout
+        android:padding="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:layout_toLeftOf="@id/image"
+        android:id="@+id/image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:src="@{viewModel.userUrl}"/>
+
+        <EditText
+            android:text="@={viewModel.userUrl}"
+            android:layout_width="wrap_content"
+            android:layout_below="@id/image"
+            android:inputType="textUri"
+            android:visibility="@{viewModel.isVisible ? View.VISIBLE:View.GONE}"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"/>
+
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_toRightOf="@id/image"
+        android:layout_width="wrap_content"
+        android:visibility="@{viewModel.isVisible ? View.GONE:View.VISIBLE}"
+        android:layout_height="wrap_content"
+        android:text="@{viewModel.userName}"
+        android:textSize="30dp"
+        tools:text="name"/>
+
+
+    <EditText
+        android:id="@+id/nameEdit"
+        android:text="@={viewModel.userName}"
+        android:layout_toRightOf="@id/image"
+        android:layout_width="wrap_content"
+        android:inputType="text"
+        android:visibility="@{viewModel.isVisible ? View.VISIBLE:View.GONE}"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"/>
+
+
+
+    <TextView
+        android:layout_toRightOf="@id/image"
+        android:visibility="@{viewModel.isVisible ? View.GONE:View.VISIBLE}"
+        android:layout_below="@id/name"
+        android:inputType="number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="age"
+        android:textSize="30dp"
+        android:text="@{viewModel.userAge}"/>
+
+
+        <EditText
+            android:layout_toRightOf="@id/image"
+            android:layout_below="@id/nameEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.isVisible ? View.VISIBLE:View.GONE}"
+            android:text="@={viewModel.userAge}"
+            android:textSize="30dp" />
+
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/buttonEditUser"
+        android:layout_gravity="center"
+        android:text="edit user"
+        android:background="#659670"
+        android:onClick="@{()->viewModel.onClickEditUser()}"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"/>
+
+    <Button
+        android:gravity="center"
+        android:text="save user"
+        android:background="#659670"
+        android:onClick="@{()->viewModel.onClickSaveUser()}"
+        android:layout_gravity="center"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"/>
+
+    <Button
+        android:id="@+id/buttonAddUser"
+        android:gravity="center"
+        android:background="#659670"
+        android:text="add user"
+        android:onClick="@{()->viewModel.onClickAddUser()}"
+        android:layout_gravity="center"
+        android:layout_width="120dp"
+        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/buttonDeleteUser"
+        android:gravity="center"
+        android:background="#659670"
+        android:text="delete user"
+        android:onClick="@{()->viewModel.onClickRemoveUser()}"
+        android:layout_gravity="center"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content" />
+
+
+
+</LinearLayout>
+    </layout>
