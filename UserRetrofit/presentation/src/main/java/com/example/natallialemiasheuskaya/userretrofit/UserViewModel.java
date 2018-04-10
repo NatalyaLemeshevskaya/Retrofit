@@ -25,7 +25,7 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 
-public class UserViewModel extends BaseViewModel {
+public class UserViewModel extends BaseViewModel<UserRouter>{
 
     @Override
     public void createInject() {

@@ -10,7 +10,7 @@ import com.example.domain.entity.UserEntity;
 import com.example.natallialemiasheuskaya.userretrofit.base.BaseMVVMActivity;
 import com.example.natallialemiasheuskaya.userretrofit.databinding.ActivityMainBinding;
 
-public class MainActivity extends BaseMVVMActivity<ActivityMainBinding,MainViewModel>{
+public class MainActivity extends BaseMVVMActivity<ActivityMainBinding,MainViewModel,UserRouter>{
 
 
     @Override
@@ -21,6 +21,11 @@ public class MainActivity extends BaseMVVMActivity<ActivityMainBinding,MainViewM
     @Override
     public MainViewModel provideViewModel() {
         return new MainViewModel();
+    }
+
+    @Override
+    public UserRouter provideRouter() {
+        return new UserRouter(this);
     }
 
     @Override

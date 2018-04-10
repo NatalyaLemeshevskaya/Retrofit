@@ -17,12 +17,13 @@ import javax.inject.Inject;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
-public class MainViewModel extends BaseViewModel {
+public class MainViewModel extends BaseViewModel<UserRouter> {
 
    // public ItemAdapter2 itemAdapter2 = new ItemAdapter2();
 
     public ItemAdapter itemAdapter = new ItemAdapter();
     public ObservableField<List<UserEntity>> list = new ObservableField<>();
+
 
 
 
@@ -39,6 +40,7 @@ public class MainViewModel extends BaseViewModel {
     public MainViewModel() {
 
         super();
+        if(router!= null) router.navigateToUser("df");
 
         getUserUseCase.get().toObservable().subscribe(new Observer<List<UserEntity>>() {
             @Override

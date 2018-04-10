@@ -1,19 +1,23 @@
-package com.example.natallialemiasheuskaya.userretrofit.base;
+package com.example.natallialemiasheuskaya.userretrofit.mvp.base;
 
 
-import android.arch.lifecycle.ViewModel;
 import android.support.annotation.Nullable;
+
+import com.example.natallialemiasheuskaya.userretrofit.base.Router;
 
 import io.reactivex.disposables.CompositeDisposable;
 
-public abstract class BaseViewModel<R extends Router> extends ViewModel {
+public abstract class BasePresenter<View extends BaseView, R extends Router> {
 
     @Nullable
     private R router;
 
+    @Nullable
+    public View view;
+
     protected CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-    public BaseViewModel() {
+    public BasePresenter() {
         super();
         createInject();
 
@@ -22,12 +26,14 @@ public abstract class BaseViewModel<R extends Router> extends ViewModel {
     public abstract void createInject();
 
 
-    public void attachRouter(R router){
+    public void attach(View view,R router){
         this.router = router;
+        this.view = view;
     }
 
-    public void detachRouter(){
+    public void detach(){
         router = null;
+        view = null;
 
     }
 
@@ -45,12 +51,10 @@ public abstract class BaseViewModel<R extends Router> extends ViewModel {
 
     }
 
-
-    @Override
-    protected void onCleared() {
-        super.onCleared();
+    public void onDestroy(){
         if(compositeDisposable.isDisposed()) {
             compositeDisposable.dispose();
         }
     }
+
 }

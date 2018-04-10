@@ -3,6 +3,7 @@ package com.example.natallialemiasheuskaya.userretrofit.injection;
 
 import com.example.natallialemiasheuskaya.userretrofit.MainViewModel;
 import com.example.natallialemiasheuskaya.userretrofit.UserViewModel;
+import com.example.natallialemiasheuskaya.userretrofit.mvp.SigninUserPresenter;
 
 
 import javax.inject.Singleton;
@@ -15,5 +16,6 @@ public interface AppComponent {
 
     void inject(MainViewModel mainViewModel);
     void inject(UserViewModel userViewModel);
+    void inject(SigninUserPresenter userPresenter);
 
 }

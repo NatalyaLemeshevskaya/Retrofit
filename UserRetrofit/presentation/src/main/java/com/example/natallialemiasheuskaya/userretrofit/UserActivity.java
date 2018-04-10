@@ -8,9 +8,10 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.natallialemiasheuskaya.userretrofit.base.BaseMVVMActivity;
+import com.example.natallialemiasheuskaya.userretrofit.base.Router;
 import com.example.natallialemiasheuskaya.userretrofit.databinding.ActiviryUserBinding;
 
-public class UserActivity extends BaseMVVMActivity<ActiviryUserBinding,UserViewModel> {
+public class UserActivity extends BaseMVVMActivity<ActiviryUserBinding,UserViewModel,UserRouter> {
 
 
     @Override
@@ -24,6 +25,11 @@ public class UserActivity extends BaseMVVMActivity<ActiviryUserBinding,UserViewM
         userViewModel.userId = getIntent().getStringExtra("ID");
         Log.e("Main","id2"+userViewModel.userId);
         return userViewModel;
+    }
+
+    @Override
+    public UserRouter provideRouter() {
+        return new UserRouter(this);
     }
 
     @Override
