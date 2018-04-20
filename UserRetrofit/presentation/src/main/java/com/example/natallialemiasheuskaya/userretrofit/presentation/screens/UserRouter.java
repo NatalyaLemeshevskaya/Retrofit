@@ -1,4 +1,4 @@
-package com.example.natallialemiasheuskaya.userretrofit.mvp;
+package com.example.natallialemiasheuskaya.userretrofit.presentation.screens;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,16 +11,11 @@ public class UserRouter extends Router {
         super(activity);
     }
 
-    public void navigateToUser(String id){
-
-        Intent intent = new Intent(getActivity(),UserActivity.class);
-        intent.putExtra("key",id);
+    public void goBack(){
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         getActivity().startActivity(intent);
-
     }
 
-    public void back(){
 
-
-    }
 }

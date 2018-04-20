@@ -1,4 +1,4 @@
-package com.example.natallialemiasheuskaya.userretrofit.base;
+package com.example.natallialemiasheuskaya.userretrofit.presentation.base;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

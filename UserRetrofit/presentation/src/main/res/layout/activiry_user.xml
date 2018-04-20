@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.natallialemiasheuskaya.userretrofit.UserViewModel"/>
+            type="com.example.natallialemiasheuskaya.userretrofit.presentation.screens.UserViewModel"/>
 
     </data>
 

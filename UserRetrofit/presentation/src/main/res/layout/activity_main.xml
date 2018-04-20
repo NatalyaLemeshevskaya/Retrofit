@@ -8,7 +8,7 @@
         <import type="android.arch.lifecycle.ViewModel"/>
         <variable
             name="viewModel"
-            type="com.example.natallialemiasheuskaya.userretrofit.MainViewModel" />
+            type="com.example.natallialemiasheuskaya.userretrofit.presentation.screens.MainViewModel" />
 
     </data>
 
@@ -16,7 +16,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".presentation.screens.MainActivity"
     android:background="#bdd1cb">
 
     <TextView

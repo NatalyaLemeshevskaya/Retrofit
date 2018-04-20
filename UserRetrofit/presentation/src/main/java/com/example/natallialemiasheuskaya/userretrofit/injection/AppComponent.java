@@ -1,8 +1,8 @@
 package com.example.natallialemiasheuskaya.userretrofit.injection;
 
 
-import com.example.natallialemiasheuskaya.userretrofit.MainViewModel;
-import com.example.natallialemiasheuskaya.userretrofit.UserViewModel;
+import com.example.natallialemiasheuskaya.userretrofit.presentation.screens.MainViewModel;
+import com.example.natallialemiasheuskaya.userretrofit.presentation.screens.UserViewModel;
 import com.example.natallialemiasheuskaya.userretrofit.mvp.SigninUserPresenter;
 
 

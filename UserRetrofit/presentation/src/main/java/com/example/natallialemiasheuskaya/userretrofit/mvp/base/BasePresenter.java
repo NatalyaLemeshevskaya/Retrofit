@@ -3,7 +3,7 @@ package com.example.natallialemiasheuskaya.userretrofit.mvp.base;
 
 import android.support.annotation.Nullable;
 
-import com.example.natallialemiasheuskaya.userretrofit.base.Router;
+import com.example.natallialemiasheuskaya.userretrofit.presentation.base.Router;
 
 import io.reactivex.disposables.CompositeDisposable;
 

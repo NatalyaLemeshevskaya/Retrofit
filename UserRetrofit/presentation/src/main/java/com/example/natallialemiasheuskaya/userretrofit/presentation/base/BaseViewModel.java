@@ -1,4 +1,4 @@
-package com.example.natallialemiasheuskaya.userretrofit.base;
+package com.example.natallialemiasheuskaya.userretrofit.presentation.base;
 
 
 import android.arch.lifecycle.ViewModel;
@@ -9,7 +9,7 @@ import io.reactivex.disposables.CompositeDisposable;
 public abstract class BaseViewModel<R extends Router> extends ViewModel {
 
     @Nullable
-    private R router;
+    protected R router;
 
     protected CompositeDisposable compositeDisposable = new CompositeDisposable();
 

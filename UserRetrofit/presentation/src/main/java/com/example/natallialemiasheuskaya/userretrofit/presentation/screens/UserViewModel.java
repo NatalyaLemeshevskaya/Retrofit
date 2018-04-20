@@ -1,5 +1,6 @@
-package com.example.natallialemiasheuskaya.userretrofit;
+package com.example.natallialemiasheuskaya.userretrofit.presentation.screens;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.BindingAdapter;
@@ -7,16 +8,16 @@ import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.util.Log;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.data.entity.Error;
 import com.example.domain.entity.UserEntity;
 import com.example.domain.interactors.AddUserUserCase;
 import com.example.domain.interactors.GetUserByIdUseCase;
 import com.example.domain.interactors.RemoveUserUseCase;
 import com.example.domain.interactors.SaveUserListUseCase;
 import com.example.natallialemiasheuskaya.userretrofit.app.App;
-import com.example.natallialemiasheuskaya.userretrofit.base.BaseViewModel;
+import com.example.natallialemiasheuskaya.userretrofit.presentation.base.BaseViewModel;
 
 import javax.inject.Inject;
 
@@ -24,6 +25,7 @@ import io.reactivex.CompletableObserver;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
 
 public class UserViewModel extends BaseViewModel<UserRouter>{
 
@@ -32,8 +34,6 @@ public class UserViewModel extends BaseViewModel<UserRouter>{
         App.getAppComponent().inject(UserViewModel.this);
     }
 
-    @Inject
-    public Context context;
 
     @Inject
     public SaveUserListUseCase saveUserListUseCase;
@@ -111,6 +111,26 @@ public class UserViewModel extends BaseViewModel<UserRouter>{
 
             @Override
             public void onError(Throwable e) {
+                if(e instanceof Error){
+
+                    Error error = (Error) e;
+                    switch (error.getMyError()){
+
+                        case NO_INTERNET:{
+
+                        }
+                        case SERVER_ERROR:{
+
+                        }
+                        case SERVER_NOT_AVAILABLE:{
+
+                        }
+                        case UNKNOWN:{
+
+                        }
+                    }
+
+                }
                 Log.e("eee","error"+e.toString());
 
             }
@@ -130,13 +150,34 @@ public class UserViewModel extends BaseViewModel<UserRouter>{
             @Override
             public void onComplete() {
                 isVisible.set(false);
-                Intent intent = new Intent(context, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+                if(router!= null){
+                    router.goBack();
+                }
+
             }
 
             @Override
             public void onError(Throwable e) {
+                if(e instanceof Error){
+
+                    Error error = (Error) e;
+                    switch (error.getMyError()){
+
+                        case NO_INTERNET:{
+
+                        }
+                        case SERVER_ERROR:{
+
+                        }
+                        case SERVER_NOT_AVAILABLE:{
+
+                        }
+                        case UNKNOWN:{
+
+                        }
+                    }
+
+                }
                 Log.e("eee","error"+e.toString());
 
             }
@@ -144,17 +185,43 @@ public class UserViewModel extends BaseViewModel<UserRouter>{
 
     }
 
+    @SuppressLint("CheckResult")
     public void onClickRemoveUser(){
 
-        removeUserUseCase.remove(userId).subscribe(new Action() {
-            @Override
-            public void run() throws Exception {
-                Intent intent = new Intent(context, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+        removeUserUseCase
+                .remove(userId)
+                .subscribe(new Action() {
+                               @Override
+                               public void run() throws Exception {
+                                   if (router != null) {
+                                       router.goBack();
+                                   }
+                               }
+                           }, new Consumer<Throwable>() {
+                               @Override
+                               public void accept(Throwable throwable) throws Exception {
+                                   if(throwable instanceof Error){
 
-            }
-        });
+                                       Error error = (Error) throwable;
+                                       switch (error.getMyError()){
+
+                                           case NO_INTERNET:{
+
+                                           }
+                                           case SERVER_ERROR:{
+
+                                           }
+                                           case SERVER_NOT_AVAILABLE:{
+
+                                           }
+                                           case UNKNOWN:{
+
+                                           }
+                                       }
+
+                                   }
+                               }
+                           });
     }
 
 

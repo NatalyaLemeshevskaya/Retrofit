@@ -28,6 +28,8 @@ public class RestService {
         this.restApi = restApi;
         this.errorTransformers = errorTransformers;
     }
+
+
     public Flowable<List<User>> loadUsers(){
         return restApi.loadUsers()
                 .compose(errorTransformers.<List<User>, ErrorRest>parseHttpError());
@@ -39,15 +41,18 @@ public class RestService {
     }
 
     public Completable saveUser(User user) {
-        return restApi.saveUser(user);
+        return restApi.saveUser(user)
+                .compose(errorTransformers.errorCompletable());
     }
 
     public Completable addUser(User user) {
-        return restApi.addUser(user);
+        return restApi.addUser(user)
+                .compose(errorTransformers.errorCompletable());
     }
 
     public Completable removeUser(String id) {
-        return restApi.removeUser(id);
+        return restApi.removeUser(id)
+                .compose(errorTransformers.errorCompletable());
     }
 
 }

@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.natallialemiasheuskaya.userretrofit.base.Router;
+import com.example.natallialemiasheuskaya.userretrofit.presentation.base.Router;
 
 
 public abstract class BaseMVPActivity<

@@ -1,12 +1,7 @@
 package com.example.natallialemiasheuskaya.userretrofit.list;
 
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-
-import com.example.domain.entity.UserEntity;
-import com.example.natallialemiasheuskaya.userretrofit.UserViewModel;
-import com.example.natallialemiasheuskaya.userretrofit.base.BaseItemViewHolder;
-import com.example.natallialemiasheuskaya.userretrofit.base.BaseItemViewModel;
+import com.example.natallialemiasheuskaya.userretrofit.presentation.base.BaseItemViewHolder;
+import com.example.natallialemiasheuskaya.userretrofit.presentation.base.BaseItemViewModel;
 
 
 //public class UserItemViewHolder extends BaseItemViewHolder<UserEntity,UserItemViewModel,ItemUsersBinding> {

@@ -18,6 +18,9 @@ import java.net.SocketTimeoutException;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.reactivex.Completable;
+import io.reactivex.CompletableSource;
+import io.reactivex.CompletableTransformer;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableTransformer;
 import io.reactivex.Observable;
@@ -49,14 +52,13 @@ public class ErrorTransformers  {
                         if(throwable instanceof SocketTimeoutException) {
                             //сервер не доступен
                             return Flowable.error(new Error(ErrorType.SERVER_NOT_AVAILABLE));
-                        }
-                        else if(throwable instanceof IOException){
+
+                        }else if(throwable instanceof IOException){
 
                             Error error = new Error(ErrorType.NO_INTERNET);
                             return Flowable.error(error);
 
-                        }
-                        else if (throwable instanceof HttpException){
+                        }else if (throwable instanceof HttpException){
                             //ошибка с интернетом
                             HttpException httpException = (HttpException) throwable;
                             //сохраняет ошибку(код)
@@ -74,9 +76,46 @@ public class ErrorTransformers  {
                 });
             }
         };
-
-
     }
+
+
+    public CompletableTransformer errorCompletable(){
+        return new CompletableTransformer() {
+            @Override
+            public CompletableSource apply(Completable upstream) {
+                return upstream.onErrorResumeNext(new Function<Throwable, CompletableSource>() {
+                    @Override
+                    public CompletableSource apply(Throwable throwable) throws Exception {
+                        if(throwable instanceof SocketTimeoutException) {
+                            //сервер не доступен
+                            return Completable.error(new Error(ErrorType.SERVER_NOT_AVAILABLE));
+                        }
+                        else if(throwable instanceof IOException){
+                            Error error = new Error(ErrorType.NO_INTERNET);
+                            return Completable.error(error);
+
+                        } else
+//                            //ошибка с интернетом
+//                            HttpException httpException = (HttpException) throwable;
+//                            //сохраняет ошибку(код)
+//                            String bodyError = (String) httpException.response().body();
+//
+//                            Type errorType = new TypeToken<ErrorThrowable>(){}.getType();
+//                            ErrorThrowable errorThrowable =  gson.fromJson(bodyError,errorType);
+//                            return Flowable.error(errorThrowable);
+
+
+                        return Completable.error(new Error(ErrorType.UNKNOWN));
+                    }
+                });
+            }
+        };
+    }
+
+
+
+
+
 
 
 }
