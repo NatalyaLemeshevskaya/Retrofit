@@ -30,7 +30,6 @@ public class UserActivity extends BaseMVPActivity<UserPresenter,UserRouter> impl
         super.onCreate(savedInstanceState);
 
 
-
     }
 
 
