@@ -8,6 +8,7 @@ import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.data.entity.Error;
@@ -33,7 +34,6 @@ public class UserViewModel extends BaseViewModel<UserRouter>{
     public void createInject() {
         App.getAppComponent().inject(UserViewModel.this);
     }
-
 
     @Inject
     public SaveUserListUseCase saveUserListUseCase;
@@ -111,28 +111,30 @@ public class UserViewModel extends BaseViewModel<UserRouter>{
 
             @Override
             public void onError(Throwable e) {
-                if(e instanceof Error){
+                if(router!=null) {
+                    if (e instanceof Error) {
 
-                    Error error = (Error) e;
-                    switch (error.getMyError()){
+                        Error error = (Error) e;
+                        switch (error.getMyError()) {
 
-                        case NO_INTERNET:{
+                            case NO_INTERNET: {
 
+                                Toast.makeText(router.getActivity(),"NO INTERNET",Toast.LENGTH_LONG).show();
+                            }
+                            case SERVER_ERROR: {
+
+                            }
+                            case SERVER_NOT_AVAILABLE: {
+
+                            }
+                            case UNKNOWN: {
+
+                            }
                         }
-                        case SERVER_ERROR:{
 
-                        }
-                        case SERVER_NOT_AVAILABLE:{
-
-                        }
-                        case UNKNOWN:{
-
-                        }
                     }
-
+                    Log.e("eee", "error" + e.toString());
                 }
-                Log.e("eee","error"+e.toString());
-
             }
         });
 
